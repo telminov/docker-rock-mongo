@@ -22,7 +22,7 @@ RUN mkdir -p /var/www/rockmongo
 RUN tar zxf /tmp/rockmongo.tar.gz -C /var/www/rockmongo/ --strip-components=1
 RUN chown -R www-data:www-data /var/www/rockmongo
 
-CMD test "$(ls -A /config/config.php)" || /var/www/rockmongo/config.sample.php; \
+CMD test "$(ls -A /config/config.php)" || cp /var/www/rockmongo/config.sample.php /config/config.php; \
     rm /var/www/rockmongo/config.php; \
     ln -s /config/config.php /var/www/rockmongo/config.php; \
     service php5-fpm start; \
